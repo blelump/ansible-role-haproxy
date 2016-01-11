@@ -72,3 +72,13 @@ backend {{ haproxy_backend.name }}
     server {{ server.name }} {{ server.address }} {{ server.options }}
 {% endfor %}
 {% endfor %}
+
+{% if haproxy_stats_enabled %}
+listen stats *:1939
+  stats enable
+  stats auth {{haproxy_stats_user}}:{{haproxy_stats_password}}
+  stats uri {{haproxy_stats_uri}}
+{% for stats in haproxy_stats_params %}
+  {{stats}}
+{% endfor %}
+{% endif %}

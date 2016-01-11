@@ -5,6 +5,14 @@ haproxy_group: haproxy
 haproxy_global_params:
   - tune.ssl.default-dh-param 2048
 
+haproxy_stats_enabled: True
+haproxy_stats_user: user
+haproxy_stats_password: password
+haproxy_stats_uri: /haproxy
+haproxy_stats_params:
+  - stats refresh 5s
+  - stats hide-version
+
 # Frontend settings.
 haproxy_frontends:
   - name: 'hafrontend'
