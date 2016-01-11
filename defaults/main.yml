@@ -3,6 +3,8 @@ haproxy_socket: /var/lib/haproxy/stats
 haproxy_chroot: /var/lib/haproxy
 haproxy_user: haproxy
 haproxy_group: haproxy
+haproxy_global_params:
+  - tune.ssl.default-dh-param 2048
 
 # Frontend settings.
 haproxy_frontends:

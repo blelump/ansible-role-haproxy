@@ -7,6 +7,9 @@ global
 {% if haproxy_chroot != '' %}
   chroot {{ haproxy_chroot }}
 {% endif %}
+{% for param in haproxy_global_params %}
+  {{ param }}
+{% endfor %}
   user {{ haproxy_user }}
   group {{ haproxy_group }}
   daemon
@@ -17,13 +20,13 @@ defaults
   option  httplog
   option  dontlognull
 {% if haproxy_version == '1.4' %}
-        contimeout 5000
-        clitimeout 50000
-        srvtimeout 50000
+  contimeout 5000
+  clitimeout 50000
+  srvtimeout 50000
 {% else %}
-        timeout connect 5000
-        timeout client 50000
-        timeout server 50000
+  timeout connect 5000
+  timeout client 50000
+  timeout server 50000
 {% endif %}
 {% if ansible_os_family == 'Debian' %}
   errorfile 400 /etc/haproxy/errors/400.http
