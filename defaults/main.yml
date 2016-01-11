@@ -5,6 +5,11 @@ haproxy_group: haproxy
 haproxy_global_params:
   - tune.ssl.default-dh-param 2048
 
+haproxy_default_params:
+  - option dontlognull
+  - option forwardfor
+  - option http-server-close
+
 haproxy_stats_enabled: True
 haproxy_stats_user: user
 haproxy_stats_password: password
